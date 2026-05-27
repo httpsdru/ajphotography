@@ -1,19 +1,29 @@
 name: Build photo index
+
 on:
   push:
-    paths: ['content/photos/**']
-    branches: [main]
+    paths:
+      - 'content/photos/**'
+    branches:
+      - main
+
 jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-python@v5
-        with: { python-version: '3.x' }
+        with:
+          python-version: '3.x'
+
       - run: pip install pyyaml
+
       - run: python scripts/build-index.py
+
       - uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: 'build: regenerate data/photos.json'

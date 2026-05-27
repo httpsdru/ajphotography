@@ -1,19 +1,18 @@
 /* ============================================================
    AJ PHOTOGRAPHY — gallery.js
-   Single-page hash router + gallery engine
    ============================================================ */
 
 (function () {
 
   const ROUTES = {
-    '':             { name: 'Portfolio',          filter: null },
-    'gigs':         { name: 'Gigs',               filter: { type: 'category', value: 'gigs' } },
-    'portraits':    { name: 'Portraits',          filter: { type: 'category', value: 'portraits' } },
-    'red-carpets':  { name: 'Red Carpets',        filter: { type: 'category', value: 'red-carpets' } },
-    'fuji-xh1':     { name: 'Fuji XH1',           filter: { type: 'camera',   value: 'fuji-xh1' } },
-    'olympus':      { name: 'Olympus OM1n OM2n',  filter: { type: 'camera',   value: 'olympus' } },
-    'mamiya-c220':  { name: 'Mamiya c3/220',      filter: { type: 'camera',   value: 'mamiya-c220' } },
-    'mamiya-s23':   { name: 'Mamiya Standard 23', filter: { type: 'camera',   value: 'mamiya-s23' } },
+    '':            { name: 'Portfolio',          filter: null },
+    'gigs':        { name: 'Gigs',               filter: { type: 'category', value: 'gigs' } },
+    'portraits':   { name: 'Portraits',          filter: { type: 'category', value: 'portraits' } },
+    'red-carpets': { name: 'Red Carpets',        filter: { type: 'category', value: 'red-carpets' } },
+    'fuji-xh1':    { name: 'Fuji XH1',           filter: { type: 'camera',   value: 'fuji-xh1' } },
+    'olympus':     { name: 'Olympus OM1n OM2n',  filter: { type: 'camera',   value: 'olympus' } },
+    'mamiya-c220': { name: 'Mamiya c3/220',      filter: { type: 'camera',   value: 'mamiya-c220' } },
+    'mamiya-s23':  { name: 'Mamiya Standard 23', filter: { type: 'camera',   value: 'mamiya-s23' } },
   };
 
   const $ = id => document.getElementById(id);
@@ -45,9 +44,7 @@
     allPhotos = await fetchPhotos();
     navigate(currentHash());
 
-    window.addEventListener('hashchange', () => {
-      showOverlay(currentHash());
-    });
+    window.addEventListener('hashchange', () => showOverlay(currentHash()));
   }
 
   /* ── Fetch ──────────────────────────────────────────────── */
@@ -73,14 +70,13 @@
     if (el.overlTitle) el.overlTitle.textContent = route.name;
     const ov = el.overlay;
     ov.style.display = '';
-    void ov.offsetWidth;           // force reflow so transition restarts
+    void ov.offsetWidth;
     ov.classList.remove('out');
     setTimeout(() => navigate(hash), 50);
   }
 
   function navigate(hash) {
-    const route  = ROUTES[hash] || ROUTES[''];
-    const filter = route.filter;
+    const { filter } = ROUTES[hash] || ROUTES[''];
 
     if (!filter) {
       photos = allPhotos.slice();
@@ -109,18 +105,22 @@
 
     if (el.photo) {
       el.photo.classList.add('loading');
-      el.photo.src = p.src || '';
+
+      // Pages.cms stores the path as 'image'; manually added entries use 'src'
+      el.photo.src = p.src || p.image || '';
       el.photo.alt = p.event || p.theme || '';
+
       el.photo.onload = () => {
-  el.photo.classList.remove('loading');
-  // Desktop: landscape images go full-bleed, portrait stay in right column
-  const landscape = el.photo.naturalWidth > el.photo.naturalHeight;
-  document.body.classList.toggle('photo-landscape', landscape);
-};
-el.photo.onerror = () => {
-  el.photo.classList.remove('loading');
-  document.body.classList.remove('photo-landscape');
-};
+        el.photo.classList.remove('loading');
+        // Landscape photos fill the full viewport on desktop
+        const isLandscape = el.photo.naturalWidth > el.photo.naturalHeight;
+        document.body.classList.toggle('photo-landscape', isLandscape);
+      };
+
+      el.photo.onerror = () => {
+        el.photo.classList.remove('loading');
+        document.body.classList.remove('photo-landscape');
+      };
     }
 
     const parts = [p.event, p.date, p.film ? `on ${p.film}` : null].filter(Boolean);
