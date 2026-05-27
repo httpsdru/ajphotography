@@ -39,9 +39,9 @@
   --black:            #000;
   --text:             #c0c0c0;   /* grey via exclusion blend on black */
   --font:             'TNR', 'Times New Roman', Times, serif;
-  --font-size:        1.1rem;    /* all body text — one value */
-  --pad-mobile:       1.1rem 1.2rem;
-  --pad-desktop:      2rem 2.5rem;
+  --font-size:        1.3rem;    /* all body text — one value */
+  --pad-mobile:       .75rem .75rem;
+  --pad-desktop:      .75rem .75rem;
 }
 
 /* ── Reset ──────────────────────────────────────────────── */
