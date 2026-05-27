@@ -1,298 +1,350 @@
-/* ─── Fonts ─────────────────────────────────────────────────── */
+/* ============================================================
+   AJ PHOTOGRAPHY — style.css
+   ============================================================ */
+
+/*
+  Drop your .woff2 files into /fonts/ named exactly:
+    TimesNewRoman.woff2
+    TimesNewRoman-Bold.woff2
+    TimesNewRoman-Italic.woff2
+*/
 @font-face {
   font-family: 'TNR';
   src: url('/fonts/TimesNewRoman.woff2') format('woff2');
-  font-weight: 400;
+  font-weight: normal;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'TNR';
   src: url('/fonts/TimesNewRoman-Bold.woff2') format('woff2');
-  font-weight: 700;
+  font-weight: bold;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'TNR';
   src: url('/fonts/TimesNewRoman-Italic.woff2') format('woff2');
-  font-weight: 400;
+  font-weight: normal;
   font-style: italic;
   font-display: swap;
 }
- 
-/* ─── Variables ─────────────────────────────────────────────── */
+
+/* ── Variables ──────────────────────────────────────────────
+   Change --text to adjust the grey tone of all body text.
+   Change --font-size to adjust all text at once (counter excluded).
+   Change panel padding to tighten/loosen margins.
+   ─────────────────────────────────────────────────────────── */
 :root {
-  --bg:        #000;
-  --text:      #868686;
-  --font:      'TNR', 'Times New Roman', Times, serif;
-  --font-size: 1.3rem;
-  --lh:        1.15;
+  --black:            #000;
+  --text:             #c0c0c0;   /* grey via exclusion blend on black */
+  --font:             'TNR', 'Times New Roman', Times, serif;
+  --font-size:        1.1rem;    /* all body text — one value */
+  --pad-mobile:       1.1rem 1.2rem;
+  --pad-desktop:      2rem 2.5rem;
 }
- 
-/* ─── Reset / base ──────────────────────────────────────────── */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
- 
+
+/* ── Reset ──────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── Base — locked to viewport, never scrolls ───────────── */
 html, body {
-  width: 100%; height: 100%;
+  height: 100%;
+  width: 100%;
   overflow: hidden;
-  background: var(--bg);
+  background: var(--black);
   color: var(--text);
   font-family: var(--font);
   font-size: var(--font-size);
-  line-height: var(--lh);
-  cursor: none;
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
 }
- 
+
+/* ── Suppress default cursor on mouse devices ────────────── */
+@media (pointer: fine) {
+  *, *::before, *::after { cursor: none !important; }
+}
+
+/* ── Links ──────────────────────────────────────────────── */
 a {
   color: inherit;
   text-decoration: underline;
-  mix-blend-mode: exclusion;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
 }
-a:hover { opacity: .7; }
- 
-/* ─── Custom cursor ─────────────────────────────────────────── */
+a:hover { opacity: 0.5; }
+
+/* ============================================================
+   CUSTOM CURSOR
+   White so it stays legible everywhere; exclusion inverts it
+   over bright photo areas.
+   ============================================================ */
 #cursor {
   position: fixed;
-  top: 0; left: 0;
+  inset: 0 auto auto 0;
   pointer-events: none;
   z-index: 9999;
   font-family: var(--font);
-  font-size: 0.85rem;
-  color: var(--text);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  color: #fff;
   mix-blend-mode: exclusion;
+  transform: translate(10px, -50%);
   white-space: nowrap;
-  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.2s;
+  display: none;
 }
- 
-/* ─── Loading overlay ───────────────────────────────────────── */
+@media (pointer: fine) {
+  #cursor { display: block; }
+  #cursor.visible { opacity: 1; }
+}
+
+/* ============================================================
+   LOADING OVERLAY
+   ============================================================ */
 #loading-overlay {
-  position: fixed; inset: 0;
-  z-index: 999;
+  position: fixed;
+  inset: 0;
+  z-index: 800;
   display: flex;
   align-items: center;
   justify-content: center;
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  background: rgba(0,0,0,.4);
-  transition: opacity .6s ease;
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  background: rgba(0,0,0,0.04);
+  transition:
+    opacity 1.1s ease,
+    backdrop-filter 1.1s ease,
+    -webkit-backdrop-filter 1.1s ease;
 }
-#loading-overlay.hidden {
+#loading-overlay.out {
   opacity: 0;
+  backdrop-filter: blur(0px);
+  -webkit-backdrop-filter: blur(0px);
   pointer-events: none;
 }
 #loading-title {
   font-family: var(--font);
-  font-size: var(--font-size);
+  font-weight: normal;
+  font-size: clamp(2.5rem, 9vw, 7rem);
   color: var(--text);
+  letter-spacing: 0.04em;
   mix-blend-mode: exclusion;
-  letter-spacing: .05em;
+  user-select: none;
 }
- 
-/* ─── Page layout ───────────────────────────────────────────── */
+
+/* ============================================================
+   PAGE SHELL — fixed, never scrolls
+   Mobile:  column  (bio → photo → footer)
+   Desktop: row     (info panel left · photo right)
+   ============================================================ */
 #page {
-  position: fixed; inset: 0;
+  position: fixed;
+  inset: 0;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 }
- 
-/* ─── Info panel (desktop left column) ─────────────────────── */
+@media (min-width: 768px) {
+  #page { flex-direction: row; }
+}
+
+/* ============================================================
+   INFO PANEL
+   ============================================================ */
 #info-panel {
-  width: 50%;
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 2rem;
-  overflow: hidden;
+  padding: var(--pad-mobile);
 }
- 
+@media (min-width: 768px) {
+  #info-panel {
+    width: 42%;
+    max-width: 520px;
+    height: 100%;
+    padding: var(--pad-desktop);
+    overflow: hidden;
+  }
+}
+
+/* Bio */
 .bio {
+  font-size: var(--font-size);
+  line-height: 1.5;
   mix-blend-mode: exclusion;
   hyphens: auto;
   -webkit-hyphens: auto;
+  overflow-wrap: break-word;
 }
- 
+
+/* Desktop metadata block */
 .meta {
-  padding-left: 1.5rem;
+  margin-top: auto;
+  padding-top: 1rem;
+  padding-left: 1.5rem;   /* tab indent — adjust to taste */
+}
+.meta-cameras {
+  font-size: var(--font-size);
+  line-height: 1.75;
   mix-blend-mode: exclusion;
 }
- 
-.meta p {
+.meta-photo {
+  margin-top: 0.35rem;
+  font-size: var(--font-size);
   mix-blend-mode: exclusion;
+  min-height: 1.45em;
 }
- 
-#photo-meta {
-  mix-blend-mode: exclusion;
-  margin-top: .4rem;
+@media (max-width: 767px) {
+  .meta { display: none; }
 }
- 
-/* ─── Main column (photo + mobile footer) ───────────────────── */
+
+/* ============================================================
+   MAIN COLUMN
+   Wraps photo + mobile footer so footer always hugs the bottom.
+   ============================================================ */
 #main-col {
   flex: 1;
+  min-width: 0;
+  min-height: 0;
   display: flex;
   flex-direction: column;
-  min-width: 0;
   overflow: hidden;
 }
- 
-/* ─── Photo panel ───────────────────────────────────────────── */
+
+/* ============================================================
+   PHOTO PANEL
+   ============================================================ */
 #photo-panel {
   flex: 1;
+  min-height: 0;
   position: relative;
   overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background: var(--black);
 }
- 
+
 #photo {
   display: block;
-  max-width: 100%;
-  max-height: 100%;
-  width: auto;
-  height: auto;
-  object-fit: contain;
-  transition: filter .4s ease;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: filter 0.55s ease;
 }
 #photo.loading {
-  filter: blur(12px);
+  filter: blur(14px);
+  transform: scale(1.02);
 }
- 
+@media (max-width: 767px) {
+  #photo { object-fit: contain; }
+}
+
 .no-photos {
+  position: absolute;
+  inset: 0;
   display: none;
-  color: var(--text);
-  mix-blend-mode: exclusion;
-  font-family: var(--font);
+  align-items: center;
+  justify-content: center;
   font-size: var(--font-size);
+  mix-blend-mode: exclusion;
 }
-.no-photos.visible { display: block; }
- 
-/* ─── Nav buttons ───────────────────────────────────────────── */
+
+/* ============================================================
+   MOBILE FOOTER — always flush to the bottom
+   ============================================================ */
+#mobile-footer {
+  flex-shrink: 0;
+  padding: 0.5rem 1.2rem 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+@media (min-width: 768px) {
+  #mobile-footer { display: none; }
+}
+
+.m-count {
+  display: block;
+  text-align: center;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  mix-blend-mode: exclusion;
+  padding-bottom: 0.2rem;
+}
+.m-cameras {
+  font-size: var(--font-size);
+  line-height: 1.75;
+  mix-blend-mode: exclusion;
+}
+.m-photo-info {
+  font-size: var(--font-size);
+  mix-blend-mode: exclusion;
+  min-height: 1.45em;
+}
+
+/* ============================================================
+   NAV ARROWS
+   ============================================================ */
 .nav-btn {
   position: fixed;
-  top: 50%; transform: translateY(-50%);
-  z-index: 100;
+  top: 50%;
+  transform: translateY(-50%);
   background: none;
   border: none;
   color: var(--text);
-  mix-blend-mode: exclusion;
   font-family: var(--font);
-  font-size: 1.6rem;
-  cursor: none;
-  padding: 1rem;
+  font-size: 1.3rem;
+  padding: 1rem 0.8rem;
+  z-index: 400;
+  mix-blend-mode: exclusion;
   opacity: 0;
-  transition: opacity .2s;
+  transition: opacity 0.2s;
+  user-select: none;
 }
-#nav-prev { left: 1rem; }
-#nav-next { right: 1rem; }
-#page:hover .nav-btn { opacity: 1; }
- 
-/* ─── Mobile footer ─────────────────────────────────────────── */
-#mobile-footer {
-  display: none;
+#nav-prev { left: 0; }
+#nav-next { right: 0; }
+
+body:hover .nav-btn { opacity: 0.25; }
+.nav-btn:hover      { opacity: 0.8 !important; }
+
+@media (max-width: 767px) {
+  .nav-btn       { opacity: 0.3; font-size: 1.6rem; }
+  .nav-btn:hover { opacity: 0.65 !important; }
 }
- 
-/* ─── Landscape full-bleed (desktop only) ───────────────────── */
+
+/* ============================================================
+   DESKTOP — landscape photos fill the full viewport.
+   Portrait photos stay in the right column (default layout).
+   Class toggled by gallery.js on each image load.
+   ============================================================ */
 @media (min-width: 768px) {
-  body.photo-landscape #page {
-    display: block;
-  }
+  body.photo-landscape #page      { display: block; }
+
   body.photo-landscape #info-panel {
     position: absolute;
-    top: 0; left: 0;
-    width: 42%; height: 100%;
+    top: 0;
+    left: 0;
+    width: 42%;
+    height: 100%;
     z-index: 10;
     background: transparent;
-    padding: 2rem;
   }
+
   body.photo-landscape #main-col {
     position: absolute;
     inset: 0;
   }
+
   body.photo-landscape #photo-panel {
     position: absolute;
     inset: 0;
   }
+
   body.photo-landscape #photo {
-    width: 100%;
-    height: 100%;
-    max-width: none;
-    max-height: none;
     object-fit: cover;
   }
-}
- 
-/* ─── Mobile ────────────────────────────────────────────────── */
-@media (max-width: 767px) {
-  html, body { cursor: auto; }
- 
-  #cursor { display: none; }
- 
-  #page {
-    flex-direction: column;
-  }
- 
-  #info-panel {
-    width: 100%;
-    flex: 0 0 auto;
-    justify-content: flex-start;
-    padding: 1.2rem 1.2rem .8rem;
-  }
- 
-  .meta { display: none; }
- 
-  #main-col {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    min-height: 0;
-  }
- 
-  #photo-panel {
-    flex: 1;
-    min-height: 0;
-  }
- 
-  #photo {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-  }
- 
-  /* Mobile footer pinned to bottom */
-  #mobile-footer {
-    display: flex;
-    flex-direction: column;
-    gap: .3rem;
-    padding: .8rem 1.2rem 1.2rem;
-    flex-shrink: 0;
-  }
- 
-  .m-count {
-    mix-blend-mode: exclusion;
-    display: block;
-  }
- 
-  .m-cameras {
-    mix-blend-mode: exclusion;
-  }
- 
-  .m-cameras a {
-    mix-blend-mode: exclusion;
-  }
- 
-  .m-photo-info {
-    mix-blend-mode: exclusion;
-  }
- 
-  /* hide desktop nav arrows on mobile */
-  .nav-btn { display: none; }
- 
-  /* on mobile, never go full-bleed even for landscape photos */
-  body.photo-landscape #page      { display: flex; }
-  body.photo-landscape #info-panel { position: static; width: 100%; height: auto; }
-  body.photo-landscape #main-col   { position: static; flex: 1; display: flex; flex-direction: column; }
-  body.photo-landscape #photo-panel { position: static; flex: 1; }
-  body.photo-landscape #photo      { object-fit: contain; }
 }
