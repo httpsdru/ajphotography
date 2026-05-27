@@ -1,0 +1,55 @@
+media:
+  input: images
+  output: /images
+
+content:
+  - name: photos
+    label: Photos
+    type: collection
+    path: content/photos
+    view:
+      fields: [image, category, event, date]
+    fields:
+      - name: image
+        label: Photo
+        type: image
+
+      - name: category
+        label: Gallery
+        type: select
+        options:
+          - label: Gigs
+            value: gigs
+          - label: Portraits
+            value: portraits
+          - label: Red Carpets
+            value: red-carpets
+
+      - name: camera
+        label: Camera
+        type: select
+        options:
+          - label: Fuji XH1
+            value: fuji-xh1
+          - label: Olympus OM1n OM2n
+            value: olympus
+          - label: Mamiya c3/220
+            value: mamiya-c220
+          - label: Mamiya Standard 23
+            value: mamiya-s23
+
+      - name: event
+        label: Event name
+        type: string
+
+      - name: date
+        label: Date
+        type: string
+
+      - name: film
+        label: Film stock
+        type: string
+
+      - name: theme
+        label: Theme
+        type: string
