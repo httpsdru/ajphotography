@@ -18,25 +18,27 @@ content:
         label: Gallery
         type: select
         options:
-          - label: Gigs
-            value: gigs
-          - label: Portraits
-            value: portraits
-          - label: Red Carpets
-            value: red-carpets
+          values:
+            - label: Gigs
+              value: gigs
+            - label: Portraits
+              value: portraits
+            - label: Red Carpets
+              value: red-carpets
 
       - name: camera
         label: Camera
         type: select
         options:
-          - label: Fuji XH1
-            value: fuji-xh1
-          - label: Olympus OM1n OM2n
-            value: olympus
-          - label: Mamiya c3/220
-            value: mamiya-c220
-          - label: Mamiya Standard 23
-            value: mamiya-s23
+          values:
+            - label: Fuji XH1
+              value: fuji-xh1
+            - label: Olympus OM1n OM2n
+              value: olympus
+            - label: Mamiya c3/220
+              value: mamiya-c220
+            - label: Mamiya Standard 23
+              value: mamiya-s23
 
       - name: event
         label: Event name
