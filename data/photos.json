@@ -1,3 +1,34 @@
 {
-  "photos": []
+  "photos": [
+    {
+      "image": "/images/DSCF8496 (3).jpg",
+      "category": "gigs",
+      "camera": "fuji-xh1",
+      "event": "London Gig",
+      "date": "21-08-20",
+      "film": "FujiXH1",
+      "id": 1,
+      "src": "/images/DSCF8496 (3).jpg"
+    },
+    {
+      "image": "/images/DSC03368.jpg",
+      "category": "gigs",
+      "camera": "mamiya-c220",
+      "event": "Piano Gig",
+      "date": "21-08-20",
+      "film": "Mamiya c3/220",
+      "id": 2,
+      "src": "/images/DSC03368.jpg"
+    },
+    {
+      "image": "/images/DSCF4320.jpg",
+      "category": "gigs",
+      "camera": "olympus",
+      "event": "Violin Gig",
+      "date": "21-08-20",
+      "film": "Olympus OM1n",
+      "id": 3,
+      "src": "/images/DSCF4320.jpg"
+    }
+  ]
 }
