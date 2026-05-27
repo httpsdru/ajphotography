@@ -1,14 +1,3 @@
 {
-  "photos": [
-    {
-      "id": 1,
-      "src": "/images/example.jpg",
-      "category": "gigs",
-      "camera": "mamiya-c220",
-      "event": "Piano Gig",
-      "date": "31-10-22",
-      "film": "Kodak 255",
-      "theme": "Motion"
-    }
-  ]
+  "photos": []
 }
