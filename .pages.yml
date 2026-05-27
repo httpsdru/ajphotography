@@ -6,7 +6,7 @@ content:
   - name: photos
     label: Photos
     type: collection
-    path: content/photos
+    path: content\photos
     view:
       fields: [image, category, event, date]
     fields:
