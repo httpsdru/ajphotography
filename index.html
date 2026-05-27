@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AJ Photography</title>
+  <meta name="description" content="AJ is a photographer from London, currently based in Melbourne, Australia. Film and black &amp; white photography.">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+  <div id="cursor" aria-hidden="true"></div>
+
+  <div id="loading-overlay" aria-hidden="true">
+    <span id="loading-title">Portfolio</span>
+  </div>
+
+  <div id="page">
+
+    <aside id="info-panel">
+      <p class="bio">
+        <a href="/#">AJ</a> is a photographer from London,
+        currently based in Melbourne, Australia.
+        Specialising in film and black&nbsp;&amp;&nbsp;white photography. From
+        <a href="/#portraits">portraits</a>,
+        <a href="/#red-carpets">red carpets</a>,
+        <a href="/#gigs">gigs</a>.
+        Capturing beauty within the misery.
+        <a href="https://instagram.com/YOUR_INSTAGRAM_HANDLE" target="_blank" rel="noopener noreferrer">Contact</a>.
+      </p>
+
+      <div class="meta" id="desktop-meta">
+        <p class="meta-cameras">
+          Digital: <a href="/#fuji-xh1">Fuji XH1</a>,
+          <a href="/#olympus">Olympus OM1n OM2n</a>,
+          <a href="/#mamiya-c220">Mamiya c3/220</a>,
+          <a href="/#mamiya-s23">Mamiya standard 23</a>
+        </p>
+        <p class="meta-photo" id="photo-meta"></p>
+      </div>
+    </aside>
+
+    <div id="main-col">
+
+      <main id="photo-panel">
+        <img id="photo" src="" alt="" class="loading">
+        <div class="no-photos" id="no-photos">No photos yet</div>
+      </main>
+
+      <footer id="mobile-footer">
+        <span class="m-count" id="mobile-count"></span>
+        <p class="m-cameras">
+          Digital: <a href="/#fuji-xh1">Fuji XH1</a>,
+          <a href="/#olympus">Olympus OM1n OM2n</a>,
+          <a href="/#mamiya-c220">Mamiya c3/220</a>,
+          <a href="/#mamiya-s23">Mamiya standard 23</a>
+        </p>
+        <p class="m-photo-info" id="mobile-photo-info"></p>
+      </footer>
+
+    </div>
+
+  </div>
+
+  <button class="nav-btn" id="nav-prev" aria-label="Previous photo">&#8592;</button>
+  <button class="nav-btn" id="nav-next" aria-label="Next photo">&#8594;</button>
+
+  <script src="/js/gallery.js"></script>
+
+</body>
+</html>

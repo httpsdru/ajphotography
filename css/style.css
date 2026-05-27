@@ -1,0 +1,335 @@
+/* ============================================================
+   AJ PHOTOGRAPHY — style.css
+   ============================================================ */
+
+/*
+  ── Self-hosted Times New Roman ─────────────────────────────
+  Drop your .ttf files into the /fonts/ folder.
+  Rename them to match the src paths below.
+
+  Windows font folder → rename to:
+    times.ttf   →  TimesNewRoman.ttf        (regular)
+    timesbd.ttf →  TimesNewRoman-Bold.ttf   (bold)
+    timesi.ttf  →  TimesNewRoman-Italic.ttf (italic)
+  ─────────────────────────────────────────────────────────── */
+@font-face {
+  font-family: 'TNR';
+  src: url('fonts\TimesNewRoman.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+  -webkit-hyphens: auto;
+}
+
+/* ── Variables ──────────────────────────────────────────── */
+:root {
+  --black:     #000;
+  /* Gray text + mix-blend-mode: exclusion →
+     appears gray on black background,
+     inverts to dark over bright photo areas */
+  --text:      #868686;
+  --font-size: 1.3rem;   /* single consistent size for all body text */
+}
+
+/* ── Reset ──────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── Base — lock to viewport, never scroll ──────────────── */
+html, body {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  background: var(--black);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: var(--font-size);
+  line-height: 1.2;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Suppress default cursor on mouse devices ────────────── */
+@media (pointer: fine) {
+  *, *::before, *::after { cursor: none !important; }
+}
+
+/* ── Links ──────────────────────────────────────────────── */
+a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+a:hover { opacity: 0.5; }
+
+/* ============================================================
+   CUSTOM CURSOR
+   White colour so it stays legible over both black and photos.
+   mix-blend-mode: exclusion → inverts over bright areas.
+   ============================================================ */
+#cursor {
+  position: fixed;
+  inset: 0 auto auto 0;
+  pointer-events: none;
+  z-index: 9999;
+  font-family: var(--font);
+  font-size: 0.75rem;       /* counter is smaller than body text */
+  letter-spacing: 0.1em;
+  color: #fff;
+  mix-blend-mode: exclusion;
+  transform: translate(10px, -50%);
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.2s;
+  display: none;
+}
+@media (pointer: fine) {
+  #cursor { display: block; }
+  #cursor.visible { opacity: 1; }
+}
+
+/* ============================================================
+   LOADING OVERLAY
+   ============================================================ */
+#loading-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  background: rgba(0,0,0,0.04);
+  transition:
+    opacity 1.1s ease,
+    backdrop-filter 1.1s ease,
+    -webkit-backdrop-filter 1.1s ease;
+}
+#loading-overlay.out {
+  opacity: 0;
+  backdrop-filter: blur(0px);
+  -webkit-backdrop-filter: blur(0px);
+  pointer-events: none;
+}
+#loading-title {
+  font-family: var(--font);
+  font-weight: normal;
+  font-size: clamp(2.5rem, 9vw, 7rem);
+  color: var(--text);
+  letter-spacing: 0.0em;
+  mix-blend-mode: exclusion;
+  user-select: none;
+}
+
+/* ============================================================
+   PAGE SHELL — fixed, no scroll
+   Mobile:  flex column
+   Desktop: flex row
+   ============================================================ */
+#page {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+}
+@media (min-width: 768px) {
+  #page { flex-direction: row; }
+}
+
+/* ============================================================
+   INFO PANEL
+   ============================================================ */
+#info-panel {
+  flex-shrink: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: .75rem .75rem;
+}
+@media (min-width: 768px) {
+  #info-panel {
+    width: 50%;
+    max-width: 1000px;
+    height: 100%;
+    padding: .75rem .75rem;
+    overflow: hidden;
+  }
+}
+
+.bio {
+  font-size: var(--font-size);
+  line-height: 1.1;
+  mix-blend-mode: exclusion;
+  hyphens: auto;
+}
+
+.meta {
+  margin-top: auto;
+  padding-top: 1rem;
+}
+.meta-cameras {
+  font-size: var(--font-size);
+  line-height: 1.1;
+  mix-blend-mode: exclusion;
+}
+.meta-photo {
+  margin-top: 0.35rem;
+  font-size: var(--font-size);
+  mix-blend-mode: exclusion;
+  min-height: 1.45em;
+}
+@media (max-width: 767px) {
+  .meta { display: none; }
+}
+
+/* ============================================================
+   MAIN COLUMN — photo above, footer below (always)
+   The footer's flex-shrink: 0 inside here is what pins
+   the bottom text to the bottom of the screen.
+   ============================================================ */
+#main-col {
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* ============================================================
+   PHOTO PANEL
+   ============================================================ */
+#photo-panel {
+  flex: 1;
+  min-height: 0;
+  position: relative;
+  overflow: hidden;
+  background: var(--black);
+}
+
+#photo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: filter 0.55s ease;
+}
+#photo.loading {
+  filter: blur(14px);
+  transform: scale(1.02);
+}
+@media (max-width: 767px) {
+  #photo { object-fit: contain; }
+}
+
+.no-photos {
+  position: absolute;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size);
+  mix-blend-mode: exclusion;
+}
+
+/* ============================================================
+   MOBILE FOOTER
+   flex-shrink: 0 → always sits flush at the screen bottom.
+   ============================================================ */
+#mobile-footer {
+  flex-shrink: 0;
+  padding: 0.5rem 0.75rem 0.85rem;
+  display: flex;
+  line-height: 1.1;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+@media (min-width: 768px) {
+  #mobile-footer { display: none; }
+}
+
+.m-count {
+  display: block;
+  text-align: center;
+  font-size: 0.75rem;      /* smaller — the only exception to --font-size */
+  letter-spacing: 0.12em;
+  mix-blend-mode: exclusion;
+  padding-bottom: 0.2rem;
+}
+
+.m-cameras {
+  font-size: var(--font-size);
+  line-height: 1.1;
+  mix-blend-mode: exclusion;
+}
+.m-photo-info {
+  font-size: var(--font-size);
+  mix-blend-mode: exclusion;
+  min-height: 1.45em;
+}
+
+/* ============================================================
+   NAV ARROWS
+   ============================================================ */
+.nav-btn {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 1.3rem;
+  padding: 1rem 0.8rem;
+  z-index: 400;
+  mix-blend-mode: exclusion;
+  opacity: 0;
+  transition: opacity 0.2s;
+  user-select: none;
+}
+#nav-prev { left: 0; }
+#nav-next { right: 0; }
+
+body:hover .nav-btn { opacity: 0.25; }
+.nav-btn:hover      { opacity: 0.8 !important; }
+
+@media (max-width: 767px) {
+  .nav-btn       { opacity: 0.3; font-size: 1.6rem; }
+  .nav-btn:hover { opacity: 0.65 !important; }
+}
+
+/* ============================================================
+   DESKTOP — landscape images fill the full viewport
+   Portrait images stay in the right column (default layout)
+   ============================================================ */
+@media (min-width: 768px) {
+  body.photo-landscape #page      { display: block; }
+
+  body.photo-landscape #info-panel {
+    position: absolute;
+    top: 0; left: 0;
+    width: 42%;
+    height: 100%;
+    z-index: 10;
+    background: transparent;
+    /* text already has mix-blend-mode: exclusion — readable over any photo */
+  }
+
+  body.photo-landscape #main-col {
+    position: absolute;
+    inset: 0;
+  }
+
+  body.photo-landscape #photo-panel {
+    position: absolute;
+    inset: 0;
+  }
+
+  body.photo-landscape #photo {
+    object-fit: cover;
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "photos": [
+    {
+      "id": 1,
+      "src": "/images/piano-gig-01.jpg",
+      "category": "gigs",
+      "camera": "mamiya-c220",
+      "event": "Piano Gig",
+      "date": "31-10-22",
+      "film": "Kodak 255",
+      "theme": "Motion"
+    },
+    {
+      "id": 2,
+      "src": "/images/red-carpet-01.jpg",
+      "category": "red-carpets",
+      "camera": "fuji-xh1",
+      "event": "Red Carpet",
+      "date": "31-10-22",
+      "film": "Kodak 255",
+      "theme": "Event"
+    },
+    {
+      "id": 3,
+      "src": "/images/gig-drummer-01.jpg",
+      "category": "gigs",
+      "camera": "olympus",
+      "event": "Gigs",
+      "date": "31-10-22",
+      "film": "Kodak 255",
+      "theme": "Colour"
+    }
+  ]
+}
