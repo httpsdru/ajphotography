@@ -133,7 +133,7 @@ a:hover { opacity: 0.5; }
   font-weight: normal;
   font-size: clamp(2.5rem, 9vw, 7rem);
   color: var(--text);
-  letter-spacing: 0.04em;
+  letter-spacing: 0.0em;
   mix-blend-mode: exclusion;
   user-select: none;
 }
@@ -165,8 +165,8 @@ a:hover { opacity: 0.5; }
 }
 @media (min-width: 768px) {
   #info-panel {
-    width: 42%;
-    max-width: 520px;
+    width: 50%;
+    max-width: 1020px;
     height: 100%;
     padding: var(--pad-desktop);
     overflow: hidden;
@@ -176,7 +176,7 @@ a:hover { opacity: 0.5; }
 /* Bio */
 .bio {
   font-size: var(--font-size);
-  line-height: 1.5;
+  line-height: 1.2;
   mix-blend-mode: exclusion;
   hyphens: auto;
   -webkit-hyphens: auto;
