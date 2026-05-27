@@ -277,13 +277,13 @@ a:hover { opacity: 0.5; }
 }
 .m-cameras {
   font-size: var(--font-size);
-  line-height: 1.75;
+  line-height: 1.1;
   mix-blend-mode: exclusion;
 }
 .m-photo-info {
   font-size: var(--font-size);
   mix-blend-mode: exclusion;
-  min-height: 1.45em;
+  min-height: 1.1em;
 }
 
 /* ============================================================
