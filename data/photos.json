@@ -54,6 +54,28 @@
       "order": 5,
       "src": "/images/DSCF4320.jpg",
       "id": 5
+    },
+    {
+      "image": "/images/Gigs/01570009.jpg",
+      "order": 6,
+      "category": "gigs",
+      "camera": "olympus",
+      "event": "Guitar Gig",
+      "date": "21-08-20",
+      "film": "Olympus OM1n",
+      "src": "/images/Gigs/01570009.jpg",
+      "id": 6
+    },
+    {
+      "image": "/images/Gigs/DSCF2705 (1).jpg",
+      "order": 7,
+      "category": "gigs",
+      "camera": "mamiya-c220",
+      "event": "Guitar Gig",
+      "date": "21-08-20",
+      "film": "Mamiya C3/220",
+      "src": "/images/Gigs/DSCF2705 (1).jpg",
+      "id": 7
     }
   ]
 }
