@@ -5,7 +5,7 @@
 (function () {
 
   const ROUTES = {
-    '':            { name: 'aj Photography',          filter: null },
+    '':            { name: 'AJ Photography',          filter: null },
     'gigs':        { name: 'Gigs',               filter: { type: 'category', value: 'gigs' } },
     'portraits':   { name: 'Portraits',          filter: { type: 'category', value: 'portraits' } },
     'red-carpets': { name: 'Red Carpets',        filter: { type: 'category', value: 'red-carpets' } },
