@@ -164,7 +164,7 @@ a:hover { opacity: 0.5; }
   .bio,
   .m-cameras,
   .m-photo-info {
-    font-size: calc(var(--font-size) - 0.2rem);
+    font-size: calc(var(--font-size) - 0.35rem);
     -webkit-text-stroke: 0.7px currentColor;
   }
 }
