@@ -122,6 +122,8 @@ a:hover { opacity: 0.5; }
   flex-direction: column;
   justify-content: space-between;
   padding: var(--pad);
+  position: relative;
+  z-index: 900;
 }
 @media (min-width: 768px) {
   #info-panel {
