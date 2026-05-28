@@ -29,6 +29,10 @@ content:
             - label: Red Carpets
               value: red-carpets
 
+      - name: order
+        label: Order
+        type: number
+
       - name: camera
         label: Camera
         type: select
@@ -58,7 +62,3 @@ content:
       - name: theme
         label: Theme
         type: string
-
-      - name: order
-        label: Order
-        type: number
