@@ -9,6 +9,20 @@
   font-style: normal;
   font-display: swap;
 }
+@font-face {
+  font-family: 'TNR';
+  src: url('/fonts/TimesNewRoman-Bold.woff2') format('woff2');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'TNR';
+  src: url('/fonts/TimesNewRoman-Italic.woff2') format('woff2');
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
+}
 
 :root {
   --black:        #000;
