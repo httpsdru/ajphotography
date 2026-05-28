@@ -12,6 +12,17 @@
       "id": 1
     },
     {
+      "image": "/images/DSC03368.jpg",
+      "category": "gigs",
+      "camera": "mamiya-c220",
+      "event": "Piano Gig",
+      "date": "21-08-20",
+      "film": "Mamiya c3/220",
+      "order": 2,
+      "src": "/images/DSC03368.jpg",
+      "id": 2
+    },
+    {
       "image": "/images/_DSF8682.jpg",
       "category": "red-carpets",
       "camera": "olympus",
@@ -20,7 +31,7 @@
       "film": "Olympus OM1n",
       "order": 3,
       "src": "/images/_DSF8682.jpg",
-      "id": 2
+      "id": 3
     },
     {
       "image": "/images/DSCF8496 (3).jpg",
@@ -31,7 +42,7 @@
       "film": "FujiXH1",
       "order": 4,
       "src": "/images/DSCF8496 (3).jpg",
-      "id": 3
+      "id": 4
     },
     {
       "image": "/images/DSCF4320.jpg",
@@ -42,16 +53,6 @@
       "film": "Olympus OM1n",
       "order": 5,
       "src": "/images/DSCF4320.jpg",
-      "id": 4
-    },
-    {
-      "image": "/images/DSC03368.jpg",
-      "category": "gigs",
-      "camera": "mamiya-c220",
-      "event": "Piano Gig",
-      "date": "21-08-20",
-      "film": "Mamiya c3/220",
-      "src": "/images/DSC03368.jpg",
       "id": 5
     }
   ]
