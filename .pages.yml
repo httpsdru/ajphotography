@@ -8,7 +8,7 @@ content:
     type: collection
     path: content/photos
     view:
-      fields: [image, category, camera, event, date, order]
+      fields: [image, order, category, camera, event, date]
       sort:
         field: order
         direction: asc
