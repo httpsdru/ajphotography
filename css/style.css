@@ -13,7 +13,7 @@
 
 :root {
   --black:      #000;
-  --text:       #ffffff;/* white + exclusion: white on black, inverts dark over bright photos */
+  --text:       #868686;   /* plain gray — no blend on black background */
   --font:       'TNR', 'Times New Roman', Times, serif;
   --font-size:  1.4rem;
   --pad:        .75rem;
@@ -48,7 +48,6 @@ a {
   text-decoration: underline;
   text-underline-offset: 3px;
   text-decoration-thickness: 1px;
-  mix-blend-mode: exclusion;
 }
 a:hover { opacity: 0.5; }
 
@@ -102,7 +101,6 @@ a:hover { opacity: 0.5; }
   font-size: clamp(2.5rem, 9vw, 7rem);
   color: var(--text);
   letter-spacing: 0.04em;
-  mix-blend-mode: exclusion;
   user-select: none;
 }
 
@@ -137,7 +135,6 @@ a:hover { opacity: 0.5; }
 .bio {
   font-size: var(--font-size);
   line-height: 1.0;
-  mix-blend-mode: exclusion;
   hyphens: auto;
   -webkit-hyphens: auto;
   overflow-wrap: break-word;
@@ -151,19 +148,16 @@ a:hover { opacity: 0.5; }
 .meta-cameras {
   font-size: var(--font-size);
   line-height: 1.1;
-  mix-blend-mode: exclusion;
 }
 .meta-photo {
   margin-top: 0.35rem;
   font-size: var(--font-size);
   line-height: 1.0;
-  mix-blend-mode: exclusion;
 }
 
 @media (max-width: 767px) {
   .meta { display: none; }
 
-  /* Mobile text 0.2rem smaller; .m-count is explicit and unaffected */
   .bio,
   .m-cameras,
   .m-photo-info {
@@ -212,7 +206,6 @@ a:hover { opacity: 0.5; }
   align-items: center;
   justify-content: center;
   font-size: var(--font-size);
-  mix-blend-mode: exclusion;
 }
 
 /* ── Mobile footer ─────────────────────────────────────────── */
@@ -232,18 +225,15 @@ a:hover { opacity: 0.5; }
   text-align: center;
   font-size: 0.75rem;
   letter-spacing: 0.12em;
-  mix-blend-mode: exclusion;
   padding-bottom: 0.2rem;
 }
 .m-cameras {
   font-size: var(--font-size);
   line-height: 1.1;
-  mix-blend-mode: exclusion;
 }
 .m-photo-info {
   font-size: var(--font-size);
   line-height: 1.0;
-  mix-blend-mode: exclusion;
 }
 
 /* ── Nav arrows ────────────────────────────────────────────── */
@@ -258,7 +248,6 @@ a:hover { opacity: 0.5; }
   font-size: 1.3rem;
   padding: 1rem 0.8rem;
   z-index: 400;
-  mix-blend-mode: exclusion;
   opacity: 0;
   transition: opacity 0.2s;
   user-select: none;
@@ -272,7 +261,7 @@ body:hover .nav-btn { opacity: 0.25; }
   .nav-btn:hover { opacity: 0.65 !important; }
 }
 
-/* ── Desktop landscape full-bleed ──────────────────────────── */
+/* ── Desktop landscape: exclusion blend over photo ─────────── */
 @media (min-width: 768px) {
   body.photo-landscape #page { display: block; }
 
@@ -285,6 +274,7 @@ body:hover .nav-btn { opacity: 0.25; }
     z-index: 10;
     background: transparent;
     mix-blend-mode: exclusion;
+    color: #fff;
   }
 
   body.photo-landscape #main-col {
