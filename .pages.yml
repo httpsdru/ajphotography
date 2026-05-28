@@ -17,6 +17,10 @@ content:
         label: Photo
         type: image
 
+      - name: order
+        label: Order
+        type: number
+
       - name: category
         label: Gallery
         type: select
@@ -28,10 +32,6 @@ content:
               value: portraits
             - label: Red Carpets
               value: red-carpets
-
-      - name: order
-        label: Order
-        type: number
 
       - name: camera
         label: Camera
