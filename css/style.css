@@ -245,7 +245,6 @@ a:hover { opacity: 0.5; }
    ============================================================ */
 #mobile-footer {
   flex-shrink: 0;
-   font-size: 1.2;
   padding: 0.5rem 1.1rem 0.85rem;
   display: flex;
   flex-direction: column;
@@ -264,12 +263,12 @@ a:hover { opacity: 0.5; }
   padding-bottom: 0.2rem;
 }
 .m-cameras {
-  font-size: 1.2;
+  font-size: var(--font-size);
   line-height: 1.1;
   mix-blend-mode: exclusion;
 }
 .m-photo-info {
-  font-size: 1.2;
+  font-size: var(--font-size);
   mix-blend-mode: exclusion;
   min-height: 1.1em;
 }
