@@ -1,6 +1,17 @@
 {
   "photos": [
     {
+      "image": "/images/002474890030.jpg",
+      "category": "portraits",
+      "camera": "mamiya-s23",
+      "event": "Emily",
+      "date": "12-04-21",
+      "film": "Mamiya Standard",
+      "order": 1,
+      "src": "/images/002474890030.jpg",
+      "id": 1
+    },
+    {
       "image": "/images/DSCF8496 (3).jpg",
       "category": "gigs",
       "camera": "fuji-xh1",
@@ -9,16 +20,6 @@
       "film": "FujiXH1",
       "order": 4,
       "src": "/images/DSCF8496 (3).jpg",
-      "id": 1
-    },
-    {
-      "image": "/images/002474890030.jpg",
-      "category": "portraits",
-      "camera": "mamiya-s23",
-      "event": "Emily",
-      "date": "12-04-21",
-      "film": "Mamiya Standard",
-      "src": "/images/002474890030.jpg",
       "id": 2
     },
     {
