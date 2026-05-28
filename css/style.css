@@ -2,6 +2,8 @@
    AJ PHOTOGRAPHY — style.css
    ============================================================ */
 
+/* Only regular woff2 provided — Bold/Italic removed to prevent
+   browser falling back to system Times New Roman              */
 @font-face {
   font-family: 'TNR';
   src: url('/fonts/TimesNewRoman.woff2') format('woff2');
@@ -9,28 +11,13 @@
   font-style: normal;
   font-display: swap;
 }
-@font-face {
-  font-family: 'TNR';
-  src: url('/fonts/TimesNewRoman-Bold.woff2') format('woff2');
-  font-weight: bold;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'TNR';
-  src: url('/fonts/TimesNewRoman-Italic.woff2') format('woff2');
-  font-weight: normal;
-  font-style: italic;
-  font-display: swap;
-}
 
 :root {
-  --black:        #000;
-  --text:         #c0c0c0;
-  --font:         'TNR', 'Times New Roman', Times, serif;
-  --font-size:    1.1rem;
-  --pad-mobile:   1.1rem 1.2rem;
-  --pad-desktop:  2rem 2.5rem;
+  --black:      #000;
+  --text:       #fff;       /* white + exclusion: white on black, inverts dark over bright photos */
+  --font:       'TNR', 'Times New Roman', Times, serif;
+  --font-size:  1.4rem;
+  --pad:        .75rem;
 }
 
 *, *::before, *::after {
@@ -47,10 +34,12 @@ html, body {
   color: var(--text);
   font-family: var(--font);
   font-size: var(--font-size);
-  line-height: 1.45;
+  line-height: 1.0;
   -webkit-font-smoothing: antialiased;
+  font-synthesis: none;
 }
 
+/* Hide default cursor on mouse devices */
 @media (pointer: fine) {
   *, *::before, *::after { cursor: none !important; }
 }
@@ -135,20 +124,20 @@ a:hover { opacity: 0.5; }
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: var(--pad-mobile);
+  padding: var(--pad);
 }
 @media (min-width: 768px) {
   #info-panel {
     width: 50%;
     height: 100%;
-    padding: var(--pad-desktop);
+    padding: var(--pad);
     overflow: hidden;
   }
 }
 
 .bio {
   font-size: var(--font-size);
-  line-height: 1.5;
+  line-height: 1.0;
   mix-blend-mode: exclusion;
   hyphens: auto;
   -webkit-hyphens: auto;
@@ -162,20 +151,20 @@ a:hover { opacity: 0.5; }
 }
 .meta-cameras {
   font-size: var(--font-size);
-  line-height: 1.75;
+  line-height: 1.1;
   mix-blend-mode: exclusion;
 }
 .meta-photo {
   margin-top: 0.35rem;
   font-size: var(--font-size);
+  line-height: 1.0;
   mix-blend-mode: exclusion;
-  min-height: 1.45em;
 }
 
 @media (max-width: 767px) {
   .meta { display: none; }
 
-  /* Mobile text 0.2rem smaller; .m-count is explicit so unaffected */
+  /* Mobile text 0.2rem smaller; .m-count is explicit and unaffected */
   .bio,
   .m-cameras,
   .m-photo-info {
@@ -230,7 +219,7 @@ a:hover { opacity: 0.5; }
 /* ── Mobile footer ─────────────────────────────────────────── */
 #mobile-footer {
   flex-shrink: 0;
-  padding: 0.5rem 1.2rem 0.85rem;
+  padding: var(--pad);
   display: flex;
   flex-direction: column;
   gap: 0.1rem;
@@ -249,13 +238,13 @@ a:hover { opacity: 0.5; }
 }
 .m-cameras {
   font-size: var(--font-size);
-  line-height: 1.75;
+  line-height: 1.1;
   mix-blend-mode: exclusion;
 }
 .m-photo-info {
   font-size: var(--font-size);
+  line-height: 1.0;
   mix-blend-mode: exclusion;
-  min-height: 1.45em;
 }
 
 /* ── Nav arrows ────────────────────────────────────────────── */
