@@ -11,13 +11,23 @@
       "src": "/images/DSCF8496 (3).jpg"
     },
     {
+      "image": "/images/002474890030.jpg",
+      "category": "portraits",
+      "camera": "mamiya-s23",
+      "event": "Emily",
+      "date": "12-04-21",
+      "film": "Mamiya Standard",
+      "id": 2,
+      "src": "/images/002474890030.jpg"
+    },
+    {
       "image": "/images/DSC03368.jpg",
       "category": "gigs",
       "camera": "mamiya-c220",
       "event": "Piano Gig",
       "date": "21-08-20",
       "film": "Mamiya c3/220",
-      "id": 2,
+      "id": 3,
       "src": "/images/DSC03368.jpg"
     },
     {
@@ -27,8 +37,18 @@
       "event": "Violin Gig",
       "date": "21-08-20",
       "film": "Olympus OM1n",
-      "id": 3,
+      "id": 4,
       "src": "/images/DSCF4320.jpg"
+    },
+    {
+      "image": "/images/_DSF8682.jpg",
+      "category": "red-carpets",
+      "camera": "olympus",
+      "event": "Mission Impossible 7",
+      "date": "21-08-20",
+      "film": "Olympus OM1n",
+      "id": 5,
+      "src": "/images/_DSF8682.jpg"
     }
   ]
 }
