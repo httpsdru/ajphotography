@@ -100,8 +100,14 @@
 
     const p       = photos[index];
     const counter = `${index + 1} / ${photos.length}`;
+    const parts   = [p.event, p.date, p.film ? `on ${p.film}` : null].filter(Boolean);
+    const meta    = parts.join('; ');
 
-    updateCounter(counter);
+    // Cursor gets full info; mobile count stays as number only
+    if (el.cursor) el.cursor.innerHTML = meta ? `${meta}<br>${index + 1}/${photos.length}` : counter;
+    if (el.mCount) el.mCount.textContent = counter;
+
+    if (el.mPhotoInfo) el.mPhotoInfo.textContent = meta;
 
     if (el.photo) {
       el.photo.classList.add('loading');
@@ -126,14 +132,9 @@
       }, 80);
     }
 
-    const parts = [p.event, p.date, p.film ? `on ${p.film}` : null].filter(Boolean);
-    const meta  = parts.join('; ');
-    if (el.photoMeta)  el.photoMeta.textContent  = meta;
-    if (el.mPhotoInfo) el.mPhotoInfo.textContent = meta;
   }
 
   function updateCounter(text) {
-    if (el.cursor) el.cursor.textContent = text;
     if (el.mCount) el.mCount.textContent = text;
   }
 
@@ -179,13 +180,13 @@
   function setupNavButtons() {
     if (el.navPrev) el.navPrev.addEventListener('click', () => go(-1));
     if (el.navNext) el.navNext.addEventListener('click', () => go(1));
-    const panel = document.getElementById('photo-panel');
-    if (panel) {
-      panel.addEventListener('click', e => {
-        const { left, width } = panel.getBoundingClientRect();
-        go((e.clientX - left) > width / 2 ? 1 : -1);
-      });
-    }
+
+    // Any click on the page (except nav buttons and links) goes to next photo
+    document.addEventListener('click', e => {
+      if (e.target.closest('.nav-btn')) return;
+      if (e.target.closest('a')) return;
+      go(1);
+    });
   }
 
   /* ── Cursor ─────────────────────────────────────────────── */

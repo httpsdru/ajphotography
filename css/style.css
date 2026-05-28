@@ -63,7 +63,10 @@ a:hover { opacity: 0.5; }
   color: #fff;
   mix-blend-mode: exclusion;
   transform: translate(-50%, -50%);
-  white-space: nowrap;
+  white-space: normal;
+  width: 10rem;
+  text-align: left;
+  line-height: 1.0;
   opacity: 0;
   transition: opacity 0.2s;
   display: none;
@@ -75,7 +78,7 @@ a:hover { opacity: 0.5; }
 
 /* ── Loading overlay ───────────────────────────────────────── */
 #loading-overlay {
-  position: absolute;
+  position: fixed;
   inset: 0;
   z-index: 800;
   display: flex;
@@ -152,10 +155,7 @@ a:hover { opacity: 0.5; }
   -webkit-text-stroke: 0.9px currentColor;
 }
 .meta-photo {
-  margin-top: 0.35rem;
-  font-size: var(--font-size);
-  line-height: 1.0;
-  -webkit-text-stroke: 0.9px currentColor;
+  display: none;
 }
 
 @media (max-width: 767px) {
@@ -240,7 +240,7 @@ a:hover { opacity: 0.5; }
   -webkit-text-stroke: 0.7px currentColor;
 }
 .m-photo-info {
-  font-size: calc(var(--font-size) - 0.2rem);
+  font-size: 0.75rem;
   line-height: 1.0;
   -webkit-text-stroke: 0.7px currentColor;
 }
