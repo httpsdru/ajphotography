@@ -1,9 +1,9 @@
 ---
 image: /images/DSCF4320.jpg
-category: gigs
-camera: olympus
-event: Violin Gig
-date: 21-08-20
-film: Olympus OM1n
 order: 5
+category: gigs
+camera: fuji-xh1
+event: Elle Dhimada
+date: 26-11-22
+film: Fuji Xt1; Pentacon 50mm F1.8
 ---
