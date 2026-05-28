@@ -1,7 +1,6 @@
 /* ============================================================
    AJ PHOTOGRAPHY — style.css
-   ============================================================ */
-
+   ============================================================ *
 /* Only regular woff2 provided — Bold/Italic removed to prevent
    browser falling back to system Times New Roman              */
 @font-face {
@@ -14,7 +13,7 @@
 
 :root {
   --black:      #000;
-  --text:       #c6fdff;
+  --text:       #ffffff;/* white + exclusion: white on black, inverts dark over bright photos */
   --font:       'TNR', 'Times New Roman', Times, serif;
   --font-size:  1.4rem;
   --pad:        .75rem;
@@ -195,12 +194,15 @@ a:hover { opacity: 0.5; }
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   transition: filter 0.55s ease;
 }
 #photo.loading {
   filter: blur(14px);
   transform: scale(1.02);
+}
+@media (max-width: 767px) {
+  #photo { object-fit: contain; }
 }
 
 .no-photos {
@@ -270,7 +272,7 @@ body:hover .nav-btn { opacity: 0.25; }
   .nav-btn:hover { opacity: 0.65 !important; }
 }
 
-/* ── Desktop only: landscape photos fill the full viewport ─── */
+/* ── Desktop landscape full-bleed ──────────────────────────── */
 @media (min-width: 768px) {
   body.photo-landscape #page { display: block; }
 
@@ -281,6 +283,25 @@ body:hover .nav-btn { opacity: 0.25; }
     width: 50%;
     height: 100%;
     z-index: 10;
+    background: transparent;
+    mix-blend-mode: exclusion;
+  }
+
+  body.photo-landscape #main-col {
+    position: absolute;
+    inset: 0;
+  }
+
+  body.photo-landscape #photo-panel {
+    position: absolute;
+    inset: 0;
+  }
+
+  body.photo-landscape #photo {
+    object-fit: cover;
+  }
+}
+-index: 10;
     background: transparent;
     mix-blend-mode: exclusion;
   }
