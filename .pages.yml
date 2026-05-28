@@ -55,3 +55,7 @@ content:
       - name: theme
         label: Theme
         type: string
+
+      - name: order
+        label: Order
+        type: number

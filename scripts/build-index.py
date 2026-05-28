@@ -43,7 +43,7 @@ for pat in ('*.md', '*.yml', '*.yaml'):
 files = sorted(set(files))
 
 photos = []
-for idx, filepath in enumerate(files, 1):
+for filepath in files:
     try:
         data = parse_file(filepath)
     except Exception as e:
@@ -53,13 +53,17 @@ for idx, filepath in enumerate(files, 1):
     if not data:
         continue
 
-    data['id'] = idx
-
     # Pages.cms stores the upload path in 'image'; gallery.js reads 'src'
     if 'image' in data and 'src' not in data:
         data['src'] = data['image']
 
     photos.append(data)
+
+# Sort by 'order' field if present, otherwise keep filename order
+photos.sort(key=lambda p: (p.get('order') is None, p.get('order', 0)))
+
+for idx, data in enumerate(photos, 1):
+    data['id'] = idx
 
 os.makedirs(os.path.dirname(OUTPUT_FILE), exist_ok=True)
 with open(OUTPUT_FILE, 'w', encoding='utf-8') as fh:

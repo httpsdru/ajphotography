@@ -106,21 +106,24 @@
     if (el.photo) {
       el.photo.classList.add('loading');
 
-      // Pages.cms stores the path as 'image'; manually added entries use 'src'
-      el.photo.src = p.src || p.image || '';
-      el.photo.alt = p.event || p.theme || '';
+      // Brief pause so the blur-out is always visible before the src swaps
+      setTimeout(() => {
+        // Pages.cms stores the path as 'image'; manually added entries use 'src'
+        el.photo.src = p.src || p.image || '';
+        el.photo.alt = p.event || p.theme || '';
 
-      el.photo.onload = () => {
-        el.photo.classList.remove('loading');
-        // Landscape photos fill the full viewport on desktop
-        const isLandscape = el.photo.naturalWidth > el.photo.naturalHeight;
-        document.body.classList.toggle('photo-landscape', isLandscape);
-      };
+        el.photo.onload = () => {
+          el.photo.classList.remove('loading');
+          // Landscape photos fill the full viewport on desktop
+          const isLandscape = el.photo.naturalWidth > el.photo.naturalHeight;
+          document.body.classList.toggle('photo-landscape', isLandscape);
+        };
 
-      el.photo.onerror = () => {
-        el.photo.classList.remove('loading');
-        document.body.classList.remove('photo-landscape');
-      };
+        el.photo.onerror = () => {
+          el.photo.classList.remove('loading');
+          document.body.classList.remove('photo-landscape');
+        };
+      }, 250);
     }
 
     const parts = [p.event, p.date, p.film ? `on ${p.film}` : null].filter(Boolean);
