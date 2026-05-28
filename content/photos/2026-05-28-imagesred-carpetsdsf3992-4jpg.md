@@ -3,7 +3,7 @@ image: /images/Red Carpets/_DSF3992 (4).jpg
 order: 8
 category: red-carpets
 camera: fuji-xh1
-event: Baftas 2024
-date: 29-03-24
-film: FujiXH1
+event: Argylle Premier
+date: 24-01-24
+film: FujiXH1; Yashinon 50mm F1.7
 ---
