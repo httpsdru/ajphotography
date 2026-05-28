@@ -75,7 +75,7 @@ a:hover { opacity: 0.5; }
 
 /* ── Loading overlay ───────────────────────────────────────── */
 #loading-overlay {
-  position: fixed;
+  position: absolute;
   inset: 0;
   z-index: 800;
   display: flex;
@@ -122,8 +122,6 @@ a:hover { opacity: 0.5; }
   flex-direction: column;
   justify-content: space-between;
   padding: var(--pad);
-  position: relative;
-  z-index: 900;
 }
 @media (min-width: 768px) {
   #info-panel {
