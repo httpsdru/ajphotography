@@ -1,6 +1,6 @@
 /* ============================================================
    AJ PHOTOGRAPHY — style.css
-   ============================================================ *
+   ============================================================ */
 /* Only regular woff2 provided — Bold/Italic removed to prevent
    browser falling back to system Times New Roman              */
 @font-face {
@@ -283,25 +283,6 @@ body:hover .nav-btn { opacity: 0.25; }
     width: 50%;
     height: 100%;
     z-index: 10;
-    background: transparent;
-    mix-blend-mode: exclusion;
-  }
-
-  body.photo-landscape #main-col {
-    position: absolute;
-    inset: 0;
-  }
-
-  body.photo-landscape #photo-panel {
-    position: absolute;
-    inset: 0;
-  }
-
-  body.photo-landscape #photo {
-    object-fit: cover;
-  }
-}
--index: 10;
     background: transparent;
     mix-blend-mode: exclusion;
   }
