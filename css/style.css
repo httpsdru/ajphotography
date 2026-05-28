@@ -144,7 +144,7 @@ a:hover { opacity: 0.5; }
 .meta {
   margin-top: auto;
   padding-top: 1rem;
-  padding-left: 1.5rem;
+  padding-left: 0rem;
 }
 .meta-cameras {
   font-size: var(--font-size);
