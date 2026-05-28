@@ -23,7 +23,7 @@
    Change panel padding to tighten/loosen margins.
    ─────────────────────────────────────────────────────────── */
 :root {
-  --black:            #0e0e0e;
+  --black:            #000000;
   --text:             #e2e2e2;   /* grey via exclusion blend on black */
   --font:             'TNR', 'Times New Roman', Times, serif;
   --font-size:        1.4rem;    /* all body text — one value */
