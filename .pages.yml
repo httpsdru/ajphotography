@@ -8,7 +8,10 @@ content:
     type: collection
     path: content/photos
     view:
-      fields: [image, category, camera, event, date]
+      fields: [image, category, camera, event, date, order]
+      sort:
+        field: order
+        direction: asc
     fields:
       - name: image
         label: Photo
