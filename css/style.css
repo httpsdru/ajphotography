@@ -14,7 +14,7 @@
 
 :root {
   --black:      #000;
-  --text:       #fff;       /* white + exclusion: white on black, inverts dark over bright photos */
+  --text:       #c6fdff;
   --font:       'TNR', 'Times New Roman', Times, serif;
   --font-size:  1.4rem;
   --pad:        .75rem;
@@ -195,15 +195,12 @@ a:hover { opacity: 0.5; }
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   transition: filter 0.55s ease;
 }
 #photo.loading {
   filter: blur(14px);
   transform: scale(1.02);
-}
-@media (max-width: 767px) {
-  #photo { object-fit: contain; }
 }
 
 .no-photos {
@@ -273,7 +270,7 @@ body:hover .nav-btn { opacity: 0.25; }
   .nav-btn:hover { opacity: 0.65 !important; }
 }
 
-/* ── Desktop landscape full-bleed ──────────────────────────── */
+/* ── Desktop only: landscape photos fill the full viewport ─── */
 @media (min-width: 768px) {
   body.photo-landscape #page { display: block; }
 
