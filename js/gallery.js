@@ -72,7 +72,7 @@
     ov.style.display = '';
     void ov.offsetWidth;
     ov.classList.remove('out');
-    setTimeout(() => navigate(hash), 50);
+    setTimeout(() => navigate(hash), 550);
   }
 
   function navigate(hash) {

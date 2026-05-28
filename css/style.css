@@ -62,7 +62,7 @@ a:hover { opacity: 0.5; }
   letter-spacing: 0.1em;
   color: #fff;
   mix-blend-mode: exclusion;
-  transform: translate(10px, -50%);
+  transform: translate(-50%, -50%);
   white-space: nowrap;
   opacity: 0;
   transition: opacity 0.2s;
@@ -193,11 +193,11 @@ a:hover { opacity: 0.5; }
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: filter 0.9s ease;
+  transition: filter 0.9s ease, opacity 0.4s ease;
 }
 #photo.loading {
   filter: blur(19px);
-  transform: scale(1);
+  opacity: 0;
 }
 @media (max-width: 767px) {
   #photo {
