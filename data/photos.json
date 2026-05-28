@@ -87,6 +87,17 @@
       "film": "FujiXH1; Yashinon 50mm F1.7",
       "src": "/images/Red Carpets/_DSF3992 (4).jpg",
       "id": 8
+    },
+    {
+      "image": "/images/Portraits/_DSF0579 (1).jpg",
+      "order": 9,
+      "category": "portraits",
+      "camera": "fuji-xh1",
+      "event": "Emily Kirby",
+      "date": "23-09-2023",
+      "film": "Fuji X-H1; Tamron adaptall 28mm f2.8",
+      "src": "/images/Portraits/_DSF0579 (1).jpg",
+      "id": 9
     }
   ]
 }
