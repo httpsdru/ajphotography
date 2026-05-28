@@ -5,7 +5,7 @@
 (function () {
 
   const ROUTES = {
-    '':            { name: 'AJ Photography',          filter: null },
+    '':            { name: 'aj Photography',          filter: null },
     'gigs':        { name: 'Gigs',               filter: { type: 'category', value: 'gigs' } },
     'portraits':   { name: 'Portraits',          filter: { type: 'category', value: 'portraits' } },
     'red-carpets': { name: 'Red Carpets',        filter: { type: 'category', value: 'red-carpets' } },
@@ -123,7 +123,7 @@
           el.photo.classList.remove('loading');
           document.body.classList.remove('photo-landscape');
         };
-      }, 250);
+      }, 80);
     }
 
     const parts = [p.event, p.date, p.film ? `on ${p.film}` : null].filter(Boolean);
