@@ -120,9 +120,24 @@
 
         el.photo.onload = () => {
           el.photo.classList.remove('loading');
-          // Landscape photos fill the full viewport on desktop
           const isLandscape = el.photo.naturalWidth > el.photo.naturalHeight;
+          // Desktop: exclusion blend overlay
           document.body.classList.toggle('photo-landscape', isLandscape);
+          // Mobile: blurred background + constrained width for landscape photos
+          const panel = document.getElementById('photo-panel');
+          if (panel && window.innerWidth < 768) {
+            if (isLandscape) {
+              panel.style.setProperty('--blur-src', `url('${el.photo.src}')`);
+              panel.classList.add('has-blur-bg');
+              el.photo.classList.add('landscape-mobile');
+            } else {
+              panel.classList.remove('has-blur-bg');
+              panel.style.removeProperty('--blur-src');
+              el.photo.classList.remove('landscape-mobile');
+            }
+          } else {
+            el.photo.classList.remove('landscape-mobile');
+          }
         };
 
         el.photo.onerror = () => {
@@ -181,11 +196,11 @@
     if (el.navPrev) el.navPrev.addEventListener('click', () => go(-1));
     if (el.navNext) el.navNext.addEventListener('click', () => go(1));
 
-    // Any click on the page (except nav buttons and links) goes to next photo
+    // Left 30% goes back, right 70% goes forward. Links excluded.
     document.addEventListener('click', e => {
-      if (e.target.closest('.nav-btn')) return;
       if (e.target.closest('a')) return;
-      go(1);
+      const dir = (e.clientX / window.innerWidth) < 0.3 ? -1 : 1;
+      go(dir);
     });
   }
 

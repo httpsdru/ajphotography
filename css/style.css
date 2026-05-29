@@ -202,7 +202,33 @@ a:hover { opacity: 0.5; }
 @media (max-width: 767px) {
   #photo {
     object-fit: contain;
-    padding: 2rem;
+    padding: 0.4rem;
+  }
+
+  /* Blurred background for landscape photos on mobile — top/bottom only, portrait width */
+  #photo-panel::before {
+    content: '';
+    position: absolute;
+    top: -15%; bottom: -15%;
+    left: 18%; right: 18%;
+    background-image: var(--blur-src, none);
+    background-size: cover;
+    background-position: center;
+    filter: blur(18px) brightness(0.35);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: 0;
+  }
+  #photo-panel.has-blur-bg::before {
+    opacity: 1;
+  }
+  #photo {
+    position: relative;
+    z-index: 1;
+  }
+  /* Landscape photos constrained to portrait-like width */
+  #photo.landscape-mobile {
+    padding: 0.4rem 18%;
   }
 }
 
@@ -218,7 +244,7 @@ a:hover { opacity: 0.5; }
 /* ── Mobile footer ─────────────────────────────────────────── */
 #mobile-footer {
   flex-shrink: 0;
-  padding: 0.1rem var(--pad) var(--pad);
+  padding: var(--pad);
   display: flex;
   flex-direction: column;
 }
@@ -227,50 +253,53 @@ a:hover { opacity: 0.5; }
 }
 
 .m-count {
-  display: block;
-  text-align: center;
-  font-size: 0.75rem;
-  -webkit-text-stroke: 0.5px currentColor;
-  letter-spacing: 0.12em;
+  display: none;
 }
 .m-photo-info {
-  font-size: 0.75rem;
-  line-height: 1.2;
-  text-align: center;
-  -webkit-text-stroke: 0.5px currentColor;
-  min-height: calc(0.75rem * 1.55 * 2);
+  display: none;
 }
 .m-cameras {
-  margin-top: auto;
-  padding-top: 0.75rem;
   font-size: calc(var(--font-size) - 0.35rem);
   line-height: 1.1;
   -webkit-text-stroke: 0.7px currentColor;
 }
 
+@media (max-width: 767px) {
+  .m-count {
+    display: block;
+    position: absolute;
+    bottom: calc(var(--pad) + 0.75rem * 1.55 * 2 + 0.2rem);
+    left: 18%; right: 18%;
+    text-align: center;
+    font-size: 0.75rem;
+    line-height: 1.1;
+    letter-spacing: 0.12em;
+    color: #fff;
+    mix-blend-mode: exclusion;
+    -webkit-text-stroke: 0;
+    pointer-events: none;
+    z-index: 5;
+  }
+  .m-photo-info {
+    display: block;
+    position: absolute;
+    bottom: var(--pad);
+    left: 18%; right: 18%;
+    text-align: center;
+    font-size: 0.75rem;
+    line-height: 1.1;
+    min-height: calc(0.75rem * 1.55 * 2);
+    color: #fff;
+    mix-blend-mode: exclusion;
+    -webkit-text-stroke: 0;
+    pointer-events: none;
+    z-index: 5;
+  }
+}
+
 /* ── Nav arrows ────────────────────────────────────────────── */
 .nav-btn {
-  position: fixed;
-  top: 50%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  color: var(--text);
-  font-family: var(--font);
-  font-size: 1.3rem;
-  padding: 1rem 0.8rem;
-  z-index: 400;
-  opacity: 0;
-  transition: opacity 0.2s;
-  user-select: none;
-}
-#nav-prev { left: 0; }
-#nav-next { right: 0; }
-body:hover .nav-btn { opacity: 0.25; }
-.nav-btn:hover      { opacity: 0.8 !important; }
-@media (max-width: 767px) {
-  .nav-btn       { opacity: 0.3; font-size: 1.6rem; }
-  .nav-btn:hover { opacity: 0.65 !important; }
+  display: none;
 }
 
 /* ── Desktop landscape: exclusion blend over photo ─────────── */
